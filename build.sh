@@ -1,4 +1,4 @@
-mdkir lib/python
+mkdir -p lib/python
 
 cp -R common lib/python/common
 
