@@ -1,7 +1,7 @@
 version = 0.1
 
 [test.deploy.parameters]
-stack_name = "theezy-core-platform"
+stack_name = "theezy-core-platform-lambda"
 s3_bucket = "aws-sam-cli-managed-theezy-core-platform"
 s3_prefix = "layered-lambda-application"
 region = "us-east-1"
