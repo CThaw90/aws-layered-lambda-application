@@ -3,7 +3,7 @@ version = 0.1
 [test.deploy.parameters]
 stack_name = "theezy-core-platform"
 s3_bucket = "aws-sam-cli-managed-theezy-core-platform"
-s3_prefix = "layered-application"
+s3_prefix = "layered-lambda-application"
 region = "us-east-1"
 confirm_changeset = false
 capabilities = ["CAPABILITY_NAMED_IAM", "CAPABILITY_IAM"]
