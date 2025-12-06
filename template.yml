@@ -1,0 +1,18 @@
+Resources:
+  SharedLibLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: SharedLib
+      ContentUri: lib/
+      CompatibleRuntimes:
+        - python3.10
+      Description: Shared Library for Platform Lambda Functions
+
+  AccountBalance:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: balance.main
+      Runtime: python3.10
+      CodeUri: account/
+      Layers:
+        - !Ref SharedLibLayer
