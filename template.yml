@@ -22,7 +22,7 @@ Resources:
       CodeUri: account/
       Events:
         ApiTrigger:
-          Type: Api
+          Type: HttpApi
           Properties:
             ApiId: !Ref HttpEndpoint
             Path: /account/balance
