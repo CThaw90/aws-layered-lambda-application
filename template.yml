@@ -20,5 +20,15 @@ Resources:
       Handler: balance.main
       Runtime: python3.10
       CodeUri: account/
+      Events:
+        ApiTrigger:
+          Type: Api
+          Properties:
+            ApiId: !Ref HttpEndpoint
+            Path: /account/balance
+            Method: get
       Layers:
         - !Ref SharedLibLayer
+
+  HttpEndpoint:
+    Type: AWS::Serverless::HttpApi
