@@ -6,5 +6,6 @@ s3_bucket = "aws-sam-cli-managed-theezy-core-platform"
 s3_prefix = "layered-lambda-application"
 region = "us-east-1"
 confirm_changeset = false
+fail_on_empty_changeset = false
 capabilities = ["CAPABILITY_NAMED_IAM", "CAPABILITY_IAM"]
 image_repositories = []
