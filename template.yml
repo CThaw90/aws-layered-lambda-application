@@ -15,9 +15,10 @@ Resources:
       Description: Shared Library for Platform Lambda Functions
 
   AccountBalance:
-    FunctionName: AccountBalance
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: AccountBalance
+      Description: This function returns the balance of a user account
       Handler: balance.main
       Runtime: python3.10
       CodeUri: account/
