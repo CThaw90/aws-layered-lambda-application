@@ -15,6 +15,7 @@ Resources:
       Description: Shared Library for Platform Lambda Functions
 
   AccountBalance:
+    FunctionName: AccountBalance
     Type: AWS::Serverless::Function
     Properties:
       Handler: balance.main
