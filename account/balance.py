@@ -9,4 +9,4 @@ def main(args, context):
     logger.info('Lambda function was invoked with the following context...')
     logger.info(context)
 
-    return {'statusCode': 200, 'body': 'Hello from Lambda!'}
+    return {'statusCode': 200, 'body': {'message': 'Hello from Lambda!'}}
