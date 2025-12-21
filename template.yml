@@ -49,7 +49,7 @@ Resources:
       DomainName: serverless-api.theezy.com
       EndpointConfiguration:
         Types:
-          - REGIONAL
+          - EDGE
       CertificateArn: arn:aws:acm:us-east-1:175336301165:certificate/591f67f3-369e-4a51-89fb-1442e2d4420e
       SecurityPolicy: TLS_1_2
 
