@@ -40,7 +40,7 @@ Resources:
       Type: A
       AliasTarget:
         DNSName: !GetAtt ServerlessCustomDomain.DistributionDomainName
-        HostedZoneId: !GetAtt ServerlessCustomDomain.RegionalHostedZoneId
+        HostedZoneId: !GetAtt ServerlessCustomDomain.DistributionHostedZoneId
 
   ServerlessCustomDomain:
     Description: This is the custom domain name for the Theezy API gateway
@@ -72,6 +72,5 @@ Resources:
     Type: AWS::ApiGateway::BasePathMapping
     Properties:
       DomainName: !Ref ServerlessCustomDomain
-
       RestApiId: !Ref HttpEndpoint
       Stage: Development
