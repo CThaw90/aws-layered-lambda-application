@@ -32,5 +32,39 @@ Resources:
       Layers:
         - !Ref SharedLibLayer
 
+  ServerlessDnsRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneName: serverless-api.theezy.com
+      Name: serverless-api.theezy.com
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt ServerlessCustomDomain.DistributionDomainName
+        HostedZoneId: ServerlessCustomDomain.RegionalHostedZoneId
+
+  ServerlessCustomDomain:
+    Description: This is the custom domain name for the Theezy API gateway
+    Type: AWS::ApiGateway::DomainName
+    Properties:
+      DomainName: serverless-api.theezy.com
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      RegionalCertificateArn: arn:aws:acm:us-east-1:175336301165:certificate/591f67f3-369e-4a51-89fb-1442e2d4420e
+      SecurityPolicy: TLS_1_2_EXTENDED
+
   HttpEndpoint:
+    Description: This endpoint is used to pass requests to the Lambda functions
     Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: Development
+      Auth:
+        DefaultAuthorizer: JwtAuthorizer
+        Authorizers:
+          JwtAuthorizer:
+            JwtConfiguration:
+              Issuer: https://theezy-dev.us.auth0.com/
+              audience:
+                - https://theezy-trader-da96c.ondigitalocean.app
+            IdentitySource: $request.header.Authorization
+      Domain: !Ref ServerlessCustomDomain
