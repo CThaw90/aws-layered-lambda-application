@@ -51,7 +51,7 @@ Resources:
         Types:
           - REGIONAL
       CertificateArn: arn:aws:acm:us-east-1:175336301165:certificate/591f67f3-369e-4a51-89fb-1442e2d4420e
-      SecurityPolicy: TLS_1_2_EXTENDED
+      SecurityPolicy: TLS_1_2
 
   HttpEndpoint:
     Description: This endpoint is used to pass requests to the Lambda functions
