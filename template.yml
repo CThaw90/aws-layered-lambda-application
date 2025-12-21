@@ -67,4 +67,10 @@ Resources:
               audience:
                 - https://theezy-trader-da96c.ondigitalocean.app
             IdentitySource: $request.header.Authorization
-      Domain: !Ref ServerlessCustomDomain
+
+  ServerlessPathMapping:
+    Type: AWS::ApiGateway::BasePathMapping
+    Properties:
+      DomainName: !Ref ServerlessCustomDomain
+      RestApiId: !Ref HttpEndpoint
+      Stage: Development
