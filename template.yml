@@ -35,7 +35,7 @@ Resources:
   ServerlessDnsRecord:
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneName: serverless-api.theezy.com
+      HostedZoneName: serverless-api.theezy.com.
       Name: serverless-api.theezy.com
       Type: A
       AliasTarget:
