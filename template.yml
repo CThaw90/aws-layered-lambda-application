@@ -55,7 +55,7 @@ Resources:
 
   HttpEndpoint:
     Description: This endpoint is used to pass requests to the Lambda functions
-    Type: AWS::Serverless::HttpApi
+    Type: AWS::Serverless::Api
     Properties:
       StageName: Development
       Auth:
@@ -69,8 +69,8 @@ Resources:
             IdentitySource: $request.header.Authorization
 
   ServerlessPathMapping:
-    Type: AWS::ApiGateway::BasePathMapping
+    Type: AWS::ApiGatewayV2::ApiMapping
     Properties:
       DomainName: !Ref ServerlessCustomDomain
-      RestApiId: !Ref HttpEndpoint
+      ApiId: !Ref HttpEndpoint
       Stage: Development
