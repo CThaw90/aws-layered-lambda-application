@@ -55,7 +55,7 @@ Resources:
 
   HttpEndpoint:
     Description: This endpoint is used to pass requests to the Lambda functions
-    Type: AWS::Serverless::Api
+    Type: AWS::Serverless::HttpApi
     Properties:
       StageName: Development
       Auth:
@@ -64,7 +64,7 @@ Resources:
           JwtAuthorizer:
             JwtConfiguration:
               Issuer: https://theezy-dev.us.auth0.com/
-              audience:
+              Audience:
                 - https://theezy-trader-da96c.ondigitalocean.app
             IdentitySource: $request.header.Authorization
 
