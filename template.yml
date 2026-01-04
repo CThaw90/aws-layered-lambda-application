@@ -35,23 +35,22 @@ Resources:
   ServerlessDnsRecord:
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneName: serverless-api.theezy.com.
-      Name: serverless-api.theezy.com
+      HostedZoneName: serverless-development.theezy.com.
+      Name: serverless-development.theezy.com
       Type: A
       AliasTarget:
-        DNSName: !GetAtt ServerlessCustomDomain.DistributionDomainName
-        HostedZoneId: !GetAtt ServerlessCustomDomain.DistributionHostedZoneId
+        DNSName: !GetAtt ServerlessCustomDomain.RegionalDomainName
+        HostedZoneId: !GetAtt ServerlessCustomDomain.RegionalHostedZoneId
 
   ServerlessCustomDomain:
     Description: This is the custom domain name for the Theezy API gateway
-    Type: AWS::ApiGateway::DomainName
+    Type: AWS::ApiGatewayV2::DomainName
     Properties:
-      DomainName: serverless-api.theezy.com
-      EndpointConfiguration:
-        Types:
-          - EDGE
-      CertificateArn: arn:aws:acm:us-east-1:175336301165:certificate/591f67f3-369e-4a51-89fb-1442e2d4420e
-      SecurityPolicy: TLS_1_2
+      DomainName: serverless-development.theezy.com
+      DomainNameConfigurations:
+        - CertificateArn: arn:aws:acm:us-east-1:175336301165:certificate/591f67f3-369e-4a51-89fb-1442e2d4420e
+          EndpointType: REGIONAL
+          SecurityPolicy: TLS_1_2
 
   HttpEndpoint:
     Description: This endpoint is used to pass requests to the Lambda functions
