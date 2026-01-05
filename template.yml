@@ -31,6 +31,8 @@ Resources:
         ApiTrigger:
           Type: HttpApi
           Properties:
+            Auth:
+              Authorizer: JwtAuthorizer
             ApiId: !Ref HttpApiEndpoint
             Path: /account/balance
             Method: get
@@ -53,8 +55,6 @@ Resources:
           Type: HttpApi
           ApiId: !Ref HttpApiEndpoint
           Properties:
-            Auth:
-              Authorizer: NONE
             Path: /user/login
             Method: post
       Layers:
@@ -86,7 +86,6 @@ Resources:
     Properties:
       StageName: Development
       Auth:
-        DefaultAuthorizer: JwtAuthorizer
         Authorizers:
           JwtAuthorizer:
             JwtConfiguration:
