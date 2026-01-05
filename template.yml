@@ -47,7 +47,7 @@ Resources:
       Environment:
         Variables:
           AUTH0_SECRET_KEY: !Ref Auth0SecretKey
-      Handler: user.login
+      Handler: login.main
       Runtime: python3.10
       CodeUri: user/
       Events:
