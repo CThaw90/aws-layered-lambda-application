@@ -51,7 +51,9 @@ Resources:
       Events:
         ApiTrigger:
           Type: HttpApi
+          ApiId: !Ref HttpApiEndpoint
           Properties:
+            Auth: NONE
             Path: /user/login
             Method: post
       Layers:
