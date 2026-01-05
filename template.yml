@@ -1,6 +1,11 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: This template tests deploying a Lambda function with a shared layer
 
+Parameters:
+  Auth0SecretKey:
+    Description: The Secret key used for Auth0 authentication
+    Type: String
+
 Transform:
   - AWS::Serverless-2016-10-31
 
@@ -26,9 +31,29 @@ Resources:
         ApiTrigger:
           Type: HttpApi
           Properties:
-            ApiId: !Ref HttpEndpoint
+            ApiId: !Ref HttpApiEndpoint
             Path: /account/balance
             Method: get
+      Layers:
+        - !Ref SharedLibLayer
+
+  UserLogin:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: UserLogin
+      Description: This function authenticates a user and returns a JWT token
+      Environment:
+        Variables:
+          AUTH0_SECRET_KEY: !Ref Auth0SecretKey
+      Handler: user.login
+      Runtime: python3.10
+      CodeUri: user/
+      Events:
+        ApiTrigger:
+          Type: HttpApi
+          Properties:
+            Path: /user/login
+            Method: post
       Layers:
         - !Ref SharedLibLayer
 
@@ -52,7 +77,7 @@ Resources:
           EndpointType: REGIONAL
           SecurityPolicy: TLS_1_2
 
-  HttpEndpoint:
+  HttpApiEndpoint:
     Description: This endpoint is used to pass requests to the Lambda functions
     Type: AWS::Serverless::HttpApi
     Properties:
@@ -71,5 +96,5 @@ Resources:
     Type: AWS::ApiGatewayV2::ApiMapping
     Properties:
       DomainName: !Ref ServerlessCustomDomain
-      ApiId: !Ref HttpEndpoint
+      ApiId: !Ref HttpApiEndpoint
       Stage: Development
