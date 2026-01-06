@@ -37,6 +37,22 @@ Resources:
       Layers:
         - !Ref SharedLibLayer
 
+  ImpactPull:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: ImpactPull
+      Description: This function pulls the latest impact data from the API
+      Handler: pull.main
+      Runtime: python3.10
+      CodeUri: impact/
+      Events:
+        ApiTrigger:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+      Layers:
+        - !Ref SharedLibLayer
+
   UserLogin:
     Type: AWS::Serverless::Function
     Properties:
