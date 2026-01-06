@@ -8,7 +8,8 @@ def main(args):
     logger.info('Function was invoked with the following arguments...')
     logger.info(args)
 
-    # logger.info('Lambda function was invoked with the following context...')
-    # logger.info(context)
-
     return {'statusCode': 200, 'body': json.dumps({'coins': 0, 'tokens': 0, 'pending': 0})}
+
+def handler(event, context):
+    logger.info(f'Function invocation started...[{context.aws_request_id}]')
+    return main(event)

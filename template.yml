@@ -24,7 +24,7 @@ Resources:
     Properties:
       FunctionName: AccountBalance
       Description: This function returns the balance of a user account
-      Handler: balance.main
+      Handler: balance.handler
       Runtime: python3.10
       CodeUri: account/
       Events:
