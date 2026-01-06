@@ -4,11 +4,11 @@ import json
 
 logger = Logger('account.balance')
 
-def main(args, context):
+def main(args):
     logger.info('Function was invoked with the following arguments...')
     logger.info(args)
 
-    logger.info('Lambda function was invoked with the following context...')
-    logger.info(context)
+    # logger.info('Lambda function was invoked with the following context...')
+    # logger.info(context)
 
     return {'statusCode': 200, 'body': json.dumps({'coins': 0, 'tokens': 0, 'pending': 0})}
